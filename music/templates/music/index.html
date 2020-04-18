@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load staticfiles %}  <!-- load the path static ..next line to load the actual css file. we dont
+     want to load unnecessary files as it may not optimize website -->
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Satisfy" rel="stylesheet" type="text/css">
+        <link rel=stylesheet" type="text/css" href="{% static 'music/style.css' %}"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+
+
+            <!--logo -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'music:index' %}">Viberr</a>
+            </div>
+
+        </div>
+    </nav>
+      {% if all_albums %}
+      <ul>
+          {%for album in all_albums%}
+          <li><a href="{% url 'music:detail' album.id %}">{{ album.album_title }}</a></li>
+          {% endfor %}
+
+      </ul>
+   {% else %}
+   <h3>No , there is no albums</h3>
+  {% endif %}
+</body>
+</html>
